@@ -1,0 +1,30 @@
+{
+  "name": "fuse-box-prettier-plugin",
+  "version": "1.0.0",
+  "description": "Fusebox (https://fuse-box.org/) plugin for automatically running Prettier (https://prettier.io)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otothea/fuse-box-prettier-plugin.git"
+  },
+  "keywords": [
+    "fuse",
+    "box",
+    "fusebox",
+    "fuse-box",
+    "prettier",
+    "plugin"
+  ],
+  "author": "Oscar Armstrong <oscar@otothea.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/otothea/fuse-box-prettier-plugin/issues"
+  },
+  "homepage": "https://github.com/otothea/fuse-box-prettier-plugin#readme",
+  "peerDependencies": {
+    "prettier": "^1.0.0"
+  }
+}
