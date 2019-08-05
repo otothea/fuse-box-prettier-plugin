@@ -1,16 +1,11 @@
 class PrettierPlugin {
   constructor(options) {
     this.options = options || {};
-    this.test = /\.(ts|tsx|js|jsx|css|scss)$/;
+    this.test = /.*/;
   }
 
   init(context) {
-    context.allowExtension('.ts');
-    context.allowExtension('.tsx');
-    context.allowExtension('.js');
-    context.allowExtension('.jsx');
-    context.allowExtension('.css');
-    context.allowExtension('.scss');
+    context.allowExtension('*');
   }
 
   transform(file) {
@@ -18,29 +13,25 @@ class PrettierPlugin {
       return;
     }
 
-    const {format} = require('prettier');
-    const {readFileSync, writeFileSync} = require('fs');
+    const { format } = require('prettier');
+    const { readFileSync, writeFileSync } = require('fs');
 
     const context = file.context;
     if (context.useCache) {
-      const cached = context.cache.getStaticCache(file);
-      if (cached) {
-        file.isLoaded = true;
-        file.contents = cached.contents;
+      if (file.loadFromCache()) {
         return;
       }
     }
 
     const code = readFileSync(file.relativePath).toString();
-
     const newCode = format(code, {
       filepath: file.relativePath,
-      singleQuote: true,
-      trailingComma: 'es5',
-      ...this.options,
+      ...this.options
     });
 
-    if (code !== newCode) writeFileSync(file.relativePath, newCode);
+    if (code !== newCode) {
+      writeFileSync(file.relativePath, newCode);
+    }
   }
 }
 

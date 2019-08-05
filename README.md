@@ -18,7 +18,10 @@ fsbx.FuseBox.init({
   homeDir: 'src/',
   plugins: [
     ...
-    ['.ts|.tsx|.js|.jsx|.css|.scss', PrettierPlugin()],
+    PrettierPlugin({
+      singleQuote: true,
+      trailingComma: 'es5',
+    }),
   ],
 }).bundle('> index.js');
 ```
